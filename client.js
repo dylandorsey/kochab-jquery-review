@@ -31,15 +31,28 @@ function onReady() {
     // events
 
     // event handler
-    $('#clickableButton').on('click', function () { // on click, run an anonymous callback function
-        console.log($('#nameInput').val());
-    });
-    $('#clickableButton').on('mouseover', function () { // on click, run an anonymous callback function
-        $('body').css('background-color', '#red');
-        console.log('moused over');
-    });
+  
+    // $('#addPersonButton').on('mouseover', function () { // on click, run an anonymous callback function
+    //     $('body').css('background-color', '#efdce9');
+    //     console.log('moused over add person button');
+    // });
+    // $('#addPersonButton').on('mouseleave', function () { // on click, run an anonymous callback function
+    //     $('body').css('background-color', '#ECDB54');
+    //     console.log('mouse leave add person button');
+    // });
     $('#clickLogger').on('click', function () { // on click, run an anonymous callback function
         console.log('i was clicked');
     });
-}
 
+    $('#addPersonButton').on('click', function () { // on click, run an anonymous callback function
+        let newPersonName = $('#nameInput').val();
+        console.log(newPersonName);
+        $('#personList').append('<li>' + newPersonName + ' ' + '<button class="deleteButton">delete</button>' + '</li>');
+    });  
+
+    // descendent selector
+    $('#personList').on('click', '.deleteButton', function () {
+        console.log('deleteButton was clicked');
+        $(this).parent().remove(); // here 'this' refers to that which was just clicked
+    });
+}// end function onReady
